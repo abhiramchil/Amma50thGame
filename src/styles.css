@@ -1,0 +1,435 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #061027;
+  --bg-2: #091d49;
+  --panel: rgba(11, 21, 59, 0.9);
+  --line: rgba(255, 178, 72, 0.88);
+  --gold: #ffcb4f;
+  --blue: #63a8ff;
+  --blue-2: #153dd9;
+  --text: #f7fbff;
+  --muted: #aeb9d8;
+  --shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(66, 146, 255, 0.16), transparent 35%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.ff-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.ff-bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(102, 206, 255, 0.9) 0 6px, transparent 7px);
+  background-size: 36px 36px;
+  opacity: 0.22;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.3));
+  isolation: isolate;
+}
+
+.ff-slide {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.ff-intro {
+  display: grid;
+  place-items: center;
+  gap: 24px;
+  background:
+    radial-gradient(circle at center, rgba(34, 84, 232, 0.42), transparent 42%),
+    linear-gradient(180deg, #07164d 0%, #091d49 55%, #061027 100%);
+}
+
+.ff-logo {
+  width: min(820px, 90vw);
+  aspect-ratio: 1.9 / 1;
+  border-radius: 50% / 44%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border: 12px solid #c62f1c;
+  box-shadow:
+    inset 0 0 0 12px rgba(255, 236, 170, 0.9),
+    inset 0 0 0 22px rgba(75, 91, 244, 0.9),
+    0 18px 40px rgba(0, 0, 0, 0.45);
+  background:
+    radial-gradient(circle at 50% 32%, rgba(187, 232, 255, 1), rgba(66, 96, 233, 0.9) 68%, rgba(44, 68, 188, 1) 100%);
+}
+
+.ff-logo-top {
+  color: #08112a;
+  font-weight: 900;
+  font-size: clamp(1.4rem, 3vw, 2.8rem);
+  letter-spacing: 0.08em;
+}
+
+.ff-logo-family {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: #ffc83f;
+  font-size: clamp(4rem, 12vw, 8rem);
+  line-height: 0.88;
+  text-shadow: 0 5px 0 rgba(0, 0, 0, 0.25);
+}
+
+.ff-logo-feud {
+  color: #74d5ff;
+  font-weight: 900;
+  font-size: clamp(3.3rem, 9vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+}
+
+.ff-start-pill {
+  padding: 16px 30px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(182, 210, 255, 1), rgba(114, 146, 255, 1));
+  color: #0b214f;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.25);
+}
+
+.ff-game {
+  background:
+    linear-gradient(180deg, rgba(3, 14, 46, 0.94), rgba(6, 16, 39, 0.98));
+}
+
+.ff-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1320px;
+  margin: 0 auto 18px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+}
+
+.ff-round-label,
+.ff-slide-counter {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ff-prompt {
+  max-width: 1320px;
+  margin: 0 auto 26px;
+  text-align: center;
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  line-height: 1.12;
+  color: #fff;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.ff-matchup-strip {
+  max-width: 1320px;
+  margin: 0 auto 28px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.ff-team-card,
+.ff-board-frame,
+.ff-roster-pill {
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow);
+}
+
+.ff-team-card {
+  appearance: none;
+  min-height: 138px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  padding: 16px;
+  text-align: center;
+  border: 3px solid transparent;
+  background: linear-gradient(180deg, rgba(22, 38, 91, 0.96), rgba(9, 17, 43, 0.96));
+  cursor: pointer;
+}
+
+.ff-team-card span,
+.ff-team-card em {
+  color: #d6e4ff;
+  font-style: normal;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.ff-team-card strong {
+  font-size: clamp(1.6rem, 3vw, 2.8rem);
+}
+
+.ff-team-card small {
+  color: rgba(255, 255, 255, 0.72);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.ff-team-card.can-award {
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.14),
+    var(--shadow);
+}
+
+.ff-vs {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, var(--gold), #f2a623);
+  color: #071130;
+  font-weight: 900;
+  font-size: 2rem;
+  border: 6px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+.ff-board {
+  max-width: 1320px;
+  margin: 0 auto;
+  transition: transform 240ms ease, opacity 240ms ease;
+}
+
+.ff-board.is-closed {
+  opacity: 0.72;
+  transform: scale(0.985);
+}
+
+.ff-board.is-open {
+  opacity: 1;
+}
+
+.ff-board-frame {
+  border-radius: 30px;
+  border: 10px solid #f29b19;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top, rgba(67, 112, 255, 0.22), transparent 35%),
+    linear-gradient(180deg, rgba(16, 29, 72, 0.98), rgba(9, 20, 51, 0.98));
+}
+
+.ff-board-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 34px;
+}
+
+.ff-answer-slot {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr) 86px;
+  min-height: 72px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  background: linear-gradient(180deg, #6786f5 0%, #4265d9 50%, #3049b2 100%);
+  cursor: pointer;
+  position: relative;
+}
+
+.ff-slot-number,
+.ff-slot-points {
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 1.8rem;
+  background: linear-gradient(180deg, #7ea0ff, #627ae8);
+  color: #fff;
+}
+
+.ff-slot-body {
+  background: linear-gradient(180deg, #8bb1ff 0%, #4665d6 52%, #273f9f 100%);
+  border-left: 2px solid rgba(255, 255, 255, 0.7);
+  border-right: 2px solid rgba(255, 255, 255, 0.7);
+  display: grid;
+  place-items: center;
+  text-transform: uppercase;
+}
+
+.ff-slot-hidden {
+  width: 52px;
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.ff-answer-slot.revealed {
+  border-color: rgba(255, 215, 107, 0.96);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.12),
+    0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.ff-slot-revealed-copy {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  padding: 0 18px;
+  width: 100%;
+}
+
+.ff-slot-revealed-copy strong {
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+}
+
+.ff-slot-revealed-copy span {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+}
+
+.ff-slot-revealed-copy small {
+  color: rgba(255, 215, 107, 0.96);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.ff-footer {
+  max-width: 1320px;
+  margin: 22px auto 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: start;
+}
+
+.ff-team-roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ff-roster-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+}
+
+.ff-roster-pill.muted {
+  opacity: 0.58;
+}
+
+.ff-roster-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.ff-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ff-controls button {
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  padding: 12px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, #4467dd, #2942ab);
+}
+
+.ff-controls button:hover {
+  filter: brightness(1.06);
+}
+
+@media (max-width: 1080px) {
+  .ff-matchup-strip,
+  .ff-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .ff-vs {
+    margin: 0 auto;
+  }
+
+  .ff-board-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ff-start-pill {
+  padding: 16px 30px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(182, 210, 255, 1), rgba(114, 146, 255, 1));
+  color: #0b214f;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 720px) {
+  .ff-slide {
+    padding: 18px;
+  }
+
+  .ff-matchup-strip {
+    gap: 12px;
+  }
+
+  .ff-answer-slot {
+    grid-template-columns: 64px minmax(0, 1fr) 64px;
+    min-height: 84px;
+  }
+
+  .ff-slot-number,
+  .ff-slot-points {
+    font-size: 1.3rem;
+  }
+
+  .ff-slot-award {
+    grid-template-columns: 1fr;
+    bottom: -52px;
+  }
+}
